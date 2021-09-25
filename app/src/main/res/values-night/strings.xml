@@ -1,5 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Blog</string>
-    <string name="maktay">maktay</string>
     <string name="welcome_to_my_blog_app">Welcome to My Blog App</string>
 </resources>
