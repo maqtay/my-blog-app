@@ -21,7 +21,6 @@ class HomePageFragmentAdapter(private val posts: List<Post>, val context: Contex
         fun bindItems(post: Post) {
             title.text = post.title
             content.text = post.body
-            author.text = post.userId.toString()
         }
     }
 
