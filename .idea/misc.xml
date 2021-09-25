@@ -5,6 +5,7 @@
       <map>
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.18070652173913043" />
         <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.18070652173913043" />
+        <entry key="app/src/main/res/menu/bottom_navigation.xml" value="0.2234375" />
       </map>
     </option>
   </component>
