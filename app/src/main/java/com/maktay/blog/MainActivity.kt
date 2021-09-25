@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.maktay.blog.fragments.BookmarkFragment
 import com.maktay.blog.fragments.HomePageFragment
 
 class MainActivity : AppCompatActivity() {
@@ -24,7 +25,7 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.bookmark -> {
-                    println("bookmark selected")
+                    replaceFragment(BookmarkFragment())
                     true
                 }
                 else -> false
