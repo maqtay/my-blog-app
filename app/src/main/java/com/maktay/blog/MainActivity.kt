@@ -33,6 +33,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onBackPressed() {}
+
     private fun replaceFragment(fragment: Fragment) {
         val changer: FragmentTransaction = supportFragmentManager.beginTransaction()
         changer.replace(R.id.fragment_container, fragment)

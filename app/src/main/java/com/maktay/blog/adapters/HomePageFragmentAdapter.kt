@@ -4,17 +4,20 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.RecyclerView
 import com.maktay.blog.R
+import com.maktay.blog.fragments.FullScreenReadFragment
 import com.maktay.blog.model.Post
 
 class HomePageFragmentAdapter(private val posts: List<Post>, val context: Context) :
     RecyclerView.Adapter<HomePageFragmentAdapter.ModelViewHolder>() {
     class ModelViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        private val title: TextView = view.findViewById(R.id.tv_title)
-        private val content: TextView = view.findViewById(R.id.tv_content)
+        val title: TextView = view.findViewById(R.id.tv_title)
+        val content: TextView = view.findViewById(R.id.tv_content)
         private val author: TextView = view.findViewById(R.id.tv_author)
         private val date: TextView = view.findViewById(R.id.tv_date)
 
@@ -34,6 +37,19 @@ class HomePageFragmentAdapter(private val posts: List<Post>, val context: Contex
 
     override fun onBindViewHolder(holder: ModelViewHolder, position: Int) {
         holder.bindItems(posts[position])
+        holder.title.setOnClickListener {
+            replaceFragment(FullScreenReadFragment(posts[position], context))
+        }
+        holder.content.setOnClickListener {
+            replaceFragment(FullScreenReadFragment(posts[position], context))
+        }
+    }
+
+    private fun replaceFragment(fragment: Fragment) {
+        val changer: FragmentTransaction = (context as AppCompatActivity?)?.supportFragmentManager!!.beginTransaction()
+        changer.addToBackStack(null)
+        changer.replace(R.id.fragment_container, fragment)
+        changer.commit()
     }
 
     override fun getItemCount(): Int {
