@@ -1,11 +1,10 @@
 package com.maktay.blog.services
 
-import com.maktay.blog.model.Post
+import com.maktay.blog.model.PostData
 import retrofit2.Call
 import retrofit2.http.GET
 
 interface Services {
-
     @GET("/posts")
-    fun getPosts() : Call<List<Post>>
+    fun getPosts() : Call<PostData>
 }

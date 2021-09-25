@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.maktay.blog.R
 import com.maktay.blog.adapters.HomePageFragmentAdapter
 import com.maktay.blog.model.Post
+import com.maktay.blog.model.PostData
 import com.maktay.blog.services.Client
 import retrofit2.Call
 import retrofit2.Callback
@@ -37,11 +38,12 @@ class HomePageFragment : Fragment() {
     }
 
     private fun getPosts() {
-        Client.getApiService().getPosts().enqueue(object : Callback<List<Post>> {
-            override fun onFailure(call: Call<List<Post>>, t: Throwable) {
+        Client.getApiService().getPosts().enqueue(object : Callback<PostData> {
+            override fun onFailure(call: Call<PostData>, t: Throwable) {
+                println(t.localizedMessage)
             }
-            override fun onResponse(call: Call<List<Post>>, response: Response<List<Post>>) {
-                val posts: List<Post>? = response.body()
+            override fun onResponse(call: Call<PostData>, response: Response<PostData>) {
+                val posts: List<Post?>? = response.body()?.data
                 recyclerView.adapter = posts?.let { HomePageFragmentAdapter(it, context!!) }
             }
         })

@@ -13,7 +13,7 @@ import com.maktay.blog.R
 import com.maktay.blog.fragments.FullScreenReadFragment
 import com.maktay.blog.model.Post
 
-class HomePageFragmentAdapter(private val posts: List<Post>, val context: Context) :
+class HomePageFragmentAdapter(private val posts: List<Post?>?, val context: Context) :
     RecyclerView.Adapter<HomePageFragmentAdapter.ModelViewHolder>() {
     class ModelViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val title: TextView = view.findViewById(R.id.tv_title)
@@ -21,9 +21,11 @@ class HomePageFragmentAdapter(private val posts: List<Post>, val context: Contex
         private val author: TextView = view.findViewById(R.id.tv_author)
         private val date: TextView = view.findViewById(R.id.tv_date)
 
-        fun bindItems(post: Post) {
-            title.text = post.title
-            content.text = post.body
+        fun bindItems(post: Post?) {
+            title.text = post!!.title
+            content.text = post.content
+            author.text = post.author
+            date.text = post.date
         }
     }
 
@@ -36,12 +38,12 @@ class HomePageFragmentAdapter(private val posts: List<Post>, val context: Contex
     }
 
     override fun onBindViewHolder(holder: ModelViewHolder, position: Int) {
-        holder.bindItems(posts[position])
+        holder.bindItems(posts?.get(position))
         holder.title.setOnClickListener {
-            replaceFragment(FullScreenReadFragment(posts[position], context))
+            replaceFragment(FullScreenReadFragment(posts?.get(position), context))
         }
         holder.content.setOnClickListener {
-            replaceFragment(FullScreenReadFragment(posts[position], context))
+            replaceFragment(FullScreenReadFragment(posts?.get(position), context))
         }
     }
 
@@ -53,6 +55,6 @@ class HomePageFragmentAdapter(private val posts: List<Post>, val context: Contex
     }
 
     override fun getItemCount(): Int {
-        return posts.size
+        return posts?.size!!
     }
 }

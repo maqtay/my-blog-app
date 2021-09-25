@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import com.maktay.blog.R
 import com.maktay.blog.model.Post
 
-class FullScreenReadFragment(post: Post, context: Context) : Fragment() {
+class FullScreenReadFragment(post: Post?, context: Context) : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
